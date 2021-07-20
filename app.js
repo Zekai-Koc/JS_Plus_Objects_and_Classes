@@ -519,8 +519,8 @@
 // console.log(firstColor.rgb());
 
 
-// const div1 = document.getElementById('mydiv1');
-// const div2 = document.getElementById('mydiv2');
+const div1 = document.getElementById('mydiv1');
+const div2 = document.getElementById('mydiv2');
 
 // // div1.style.backgroundColor = firstColor.hex();
 
@@ -594,44 +594,18 @@
 
 // color1.test();
 
-// // compare hex ===
+// // if you write the function inside the constructor function, it will not be added to proto. why this is important? if it is in the prototype then there will be only one copy, on the other hand, for each object, the function will be created seperately.
+
+// console.log(color1.test === color2.test);  // false
+// console.log(color1.rgb === color2.rgb);  // true
 
 
 
 
 
-// // using class
-
-// class ColorClass {
-//     constructor(r, g, b, name) {
-//         this.r = r;
-//         this.g = g;
-//         this.b = b;
-//         this.name = name;
-//     }
-//     innerRGB() {
-//         const { r, g, b } = this;
-//         return `${r}, ${g}, ${b}`;
-//     }
-//     rgb = function () {
-//         return `rgb(${this.innerRGB()})`;
-//     };
-//     rgba(a = 1.0) {
-//         return `rgba(${this.innerRGB()}, ${a})`;
-//     }
-//     hex() {
-//         const { r, g, b } = this;
-//         return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-//     }
-// }
-// const red = new ColorClass(255, 67, 89, 'tomato');
-// const white = new ColorClass(255, 255, 255, 'white');
-
-// div1.style.backgroundColor = red.rgba(0.9);
-// // div2.style.backgroundColor = white.rgb();
+// using class
 
 
-// /*
 // class ColorClass {
 //   constructor(r, g, b, name) {
 //     this.r = r;
@@ -656,15 +630,50 @@
 // const red = new ColorClass(255, 67, 89, 'tomato');
 // const white = new ColorClass(255, 255, 255, 'white');
  
-// div1.style.backgroundColor = red.rgba(0.8);
- 
- 
+// div1.style.backgroundColor = red.rgba(0.3);
+
+// // all the functions go automatically to the prototype section of our class. different than object.
+// console.log(red);
+
 // // static
- 
-// const arr = [1,2,3,4]
-// arr.from?
-// */
-// /*
+
+// // we can add static methods, however these methods are not included in the instances. just in the class itself.
+// // for checking the static method call on console: > ColorClass.test()
+// class ColorClass {
+//     constructor(r, g, b, name) {
+//       this.r = r;
+//       this.g = g;
+//       this.b = b;
+//       this.name = name;
+//     }
+   
+//     rgb() {
+//       const { r, g, b } = this;
+//       return `rgb(${r}, ${g}, ${b})`;
+//     }
+//     rgba(a = 1.0) {
+//       const { r, g, b } = this;
+//       return `rgba(${r}, ${g}, ${b}, ${a})`;
+//     }
+//     hex() {
+//       const { r, g, b } = this;
+//       return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+//     }
+//     static test() {
+//         console.log("this is a static method...");
+//     }
+//   }
+
+//   const red = new ColorClass(255, 67, 89, 'tomato');
+//   const white = new ColorClass(255, 255, 255, 'white');
+   
+//   div1.style.backgroundColor = red.rgba(0.3);
+  
+//   console.log(red);
+
+
+
+
 // class Pet {
 //   constructor(name, age) {
 //     // console.log('IN PET CONSTRUCTOR!');
@@ -677,21 +686,41 @@
 //   }
 // }
  
-// class Dog extends Pet {
-//   eat() {
-//     return `${this.name} eats meat`;
-//   }
-// }
- 
 // const karabas = new Dog('Karabas', 5);
  
-// console.log(karabas.eat());
 // console.log(karabas.info());
 // console.log(karabas.age);
  
+
+
+// // inheritance...
+// class Pet {
+//     constructor(name, age) {
+//       // console.log('IN PET CONSTRUCTOR!');
+//       this.name = name;
+//       this.age = age;
+//     }
+   
+//     info() {
+//       return `This pet's name is ${this.name} and it is ${this.age} years old.`;
+//     }
+//   }
+   
+//   class Dog extends Pet {
+//     eat() {
+//       return `${this.name} eats meat`;
+//     }
+//   }
+   
+//   const karabas = new Dog('Karabas', 5);
+   
+//   console.log(karabas.eat());
+//   console.log(karabas.info());
+//   console.log(karabas.age);
+
+
 // class Cat extends Pet {
 //   constructor(name, age, eyes = 'black') {
-//     // console.log('IN CAT CONSTRUCTOR!');
 //     super(name, age);
 //     this.eyes = eyes;
 //   }
@@ -699,22 +728,77 @@
 //   eat() {
 //     return `${this.name} eats fish`;
 //   }
- 
+//    // we are adding the same named method in the child class. polymorphism...
 //   info() {
 //     return `This pet's name is ${this.name} and it is ${this.age} years old, and it has ${this.eyes} eyes.`;
 //   }
 // }
  
-// const tekir = new Cat('Tekir', 3);
+// // const tekir = new Cat('Tekir', 3);
+// // console.log(tekir.eat());
+// // console.log(tekir.info());
+// // console.log(tekir.age);
+
+
+// const tekir = new Cat('Tekir', 3, "blue");
 // console.log(tekir.eat());
 // console.log(tekir.info());
 // console.log(tekir.age);
-// */
+
+
+// class Cat extends Pet {
+//     // error !!! you should call parents constructor...
+//     constructor(name, age, eyes = 'black') {
+//       this.name = name;
+//       this.age = age;
+//       this.eyes = eyes;
+//     }
+   
+//     eat() {
+//       return `${this.name} eats fish`;
+//     }
+//      // we are adding the same named method in the child class. polymorphism...
+//     info() {
+//       return `This pet's name is ${this.name} and it is ${this.age} years old, and it has ${this.eyes} eyes.`;
+//     }
+//   }
+  
+//   const tekir = new Cat('Tekir', 3, "blue");
+//   console.log(tekir.eat());
+//   console.log(tekir.info());
+//   console.log(tekir.age);
+  
+
+
+
+// // adding private properties: use # for creating protected/private properties.
+// // old convention for creating private properties: _ before the name... just for informing, no coersion.
+// class Pet {
+//     age;
+//     _name;
+//     constructor(name, age) {
+//         this._name = name;
+//         this.age = age;
+//     }
+
+//     info() {
+//         return `This pet's name is ${this._name} and it is ${this.age} years old.`;
+//     }
+// }
+
+// const karabas = new Pet('Karabas', 5);
+
+// console.log(karabas.info());
+// console.log(karabas.age);
+
+
+// // new method... # 
+// // getters and setters...
+// // by using getters and setters, we are accesing and using the methods like properties. 
 // class Pet {
 //     #age;
 //     _name;
 //     constructor(name, age) {
-//         // console.log('IN PET CONSTRUCTOR!');
 //         this._name = name;
 //         this.#age = age;
 //     }
@@ -727,9 +811,11 @@
 //         return this.#age;
 //     }
 
-//     set petAge(newAge) {
+//     set petAge(newAge) {   // for example, we can make validation for the age with this method...
 //         this.#age = newAge;
 //     }
+
+//     #test() { return "this is a private method..."}
 // }
 
 // const karabas = new Pet('Karabas', 5);
@@ -737,3 +823,55 @@
 // console.log(karabas.info());
 // console.log(karabas.age);
 // console.log(karabas.petAge);
+
+// // // error
+// // karabas.petAge(11);
+
+// karabas.petAge = 11;
+// console.log(karabas.petAge);
+
+
+// we can still access the private properties with regular functions.
+class Pet {
+    #age;
+    _name;
+    constructor(name, age) {
+        this._name = name;
+        this.#age = age;
+    }
+
+    info() {
+        return `This pet's name is ${this._name} and it is ${this.#age} years old.`;
+    }
+
+    get petAge() {
+        return this.#age;
+    }
+
+    set petAge(newAge) {   // for example, we can make validation for the age with this method...
+        this.#age = newAge;
+    }
+
+    #test() { return "this is a private method..."}
+
+    setPetAge(newAge) {
+        this.#age = newAge;
+    }
+
+}
+
+const karabas = new Pet('Karabas', 5);
+
+console.log(karabas.info());
+console.log(karabas.age);
+console.log(karabas.petAge);
+
+// // error
+// karabas.petAge(11);
+
+karabas.petAge = 11;
+console.log(karabas.petAge);
+
+karabas.setPetAge(9);
+console.log(karabas.petAge);
+
