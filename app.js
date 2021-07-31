@@ -1,5 +1,6 @@
 // 'use strict';
 
+// ---------------------------------------------------------------------------- //
 // group together different values.
 // here we will define an object named person:
 
@@ -15,7 +16,7 @@
 // const teacher = {}  // an empty object.
 // // now we can assign properties to our empthy object:
 // teacher.fullName = "michael adams";
-// teacher.age = 47;
+// teacher.age = 46;
 
 // // key value
 // // collections of properties
@@ -34,6 +35,7 @@
 // console.log(person['midName']);
 
 
+// ---------------------------------------------------------------------------- //
 // // let's improve our first object, person:
 // const person = {
 //     firstName: 'Barry',
@@ -62,6 +64,7 @@
 
 
 
+// ---------------------------------------------------------------------------- //
 // // modifing objects
 // // updating
 // console.log(person.birthYear);
@@ -83,6 +86,8 @@
 // delete person.lastName;
 // console.log(person.lastName);
 
+
+// ---------------------------------------------------------------------------- //
 // // nested array and objects
 // // optional
 // const comments = [
@@ -90,6 +95,8 @@
 //     { username: 'Tom', comment: 'new comment', votes: 102 },
 // ];
 
+
+// ---------------------------------------------------------------------------- //
 // // looping on objects
 // for (let item of Object.keys(person)) {
 //     console.log(item);
@@ -105,6 +112,7 @@
 
 
 
+// ---------------------------------------------------------------------------- //
 // // // let's improve our first object, person more:
 // const person = {
 //     firstName: 'Barry',
@@ -134,7 +142,6 @@
 // };
 
 // methods
-
 // console.log(person.calcAgeBad(1977));
 // console.log(person.age);
 // console.log(person.calcAge());
@@ -165,7 +172,7 @@
 
 
 
-
+// ---------------------------------------------------------------------------- //
 // const teacher = {
 //     birthYear: 1977,
 //     calcAge: function () {
@@ -245,6 +252,7 @@
 
 
 
+// ---------------------------------------------------------------------------- //
 // // destructuring objects
 // // recap:
 // const myArray = [1, 2, 3, 4, 5, 6, 7];
@@ -492,7 +500,7 @@
 // const nums = [6, 7, 8, 9];
 // console.log(nums.pop()); // "SORRY I WANT THAT ELEMENT, I WILL NEVER POP IT OFF!"
 
-// //This functions makes and returns an object every time it is called.
+// //This function makes and returns an object every time it is called.
 // // The resulting objects all follow the same "recipe"
 
 // function makeColor(r, g, b) {
@@ -832,46 +840,46 @@ const div2 = document.getElementById('mydiv2');
 
 
 // we can still access the private properties with regular functions.
-class Pet {
-    #age;
-    _name;
-    constructor(name, age) {
-        this._name = name;
-        this.#age = age;
-    }
+// class Pet {
+//     #age;
+//     _name;
+//     constructor(name, age) {
+//         this._name = name;
+//         this.#age = age;
+//     }
 
-    info() {
-        return `This pet's name is ${this._name} and it is ${this.#age} years old.`;
-    }
+//     info() {
+//         return `This pet's name is ${this._name} and it is ${this.#age} years old.`;
+//     }
 
-    get petAge() {
-        return this.#age;
-    }
+//     get petAge() {
+//         return this.#age;
+//     }
 
-    set petAge(newAge) {   // for example, we can make validation for the age with this method...
-        this.#age = newAge;
-    }
+//     set petAge(newAge) {   // for example, we can make validation for the age with this method...
+//         this.#age = newAge;
+//     }
 
-    #test() { return "this is a private method..."}
+//     #test() { return "this is a private method..."}
 
-    setPetAge(newAge) {
-        this.#age = newAge;
-    }
+//     setPetAge(newAge) {
+//         this.#age = newAge;
+//     }
 
-}
+// }
 
-const karabas = new Pet('Karabas', 5);
+// const karabas = new Pet('Karabas', 5);
 
-console.log(karabas.info());
-console.log(karabas.age);
-console.log(karabas.petAge);
+// console.log(karabas.info());
+// console.log(karabas.age);
+// console.log(karabas.petAge);
 
-// // error
-// karabas.petAge(11);
+// // // error
+// // karabas.petAge(11);
 
-karabas.petAge = 11;
-console.log(karabas.petAge);
+// karabas.petAge = 11;
+// console.log(karabas.petAge);
 
-karabas.setPetAge(9);
-console.log(karabas.petAge);
+// karabas.setPetAge(9);
+// console.log(karabas.petAge);
 
